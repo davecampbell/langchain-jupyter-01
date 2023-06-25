@@ -37,7 +37,7 @@ RUN set -ex \
     'python-slugify[unidecode]==5.0.2' \
     && conda clean --all -f -y \
     # install jupyter lab extensions you need
-    && jupyter labextension install jupyterlab-plotly@5.4.0 --no-build \
+    && jupyter labextension install jupyterlab-plotly --no-build \
     && jupyter lab build -y \
     && jupyter lab clean -y \
     && rm -rf "/home/${NB_USER}/.cache/yarn" \
