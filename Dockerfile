@@ -28,28 +28,8 @@ USER $NB_UID
 
 # install Python packages you often use
 RUN set -ex \
-    && conda install --quiet --yes --channel conda-forge \
-    # choose the python packages you need
-    'jupytext==1.13.0' \
-    # 'plotly==5.4.0' \
-    'folium==0.12.0' \
-    'geopandas==0.10.2' \
-    'python-slugify[unidecode]==5.0.2' \
-    && conda clean --all -f -y \
-    # install jupyter lab extensions you need
-    # && jupyter labextension install jupyterlab-plotly --no-build \
-    && jupyter lab build -y \
-    && jupyter lab clean -y \
-    && rm -rf "/home/${NB_USER}/.cache/yarn" \
-    && rm -rf "/home/${NB_USER}/.node-gyp" \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
-
-# was getting an error when saving notebooks
-# google error msg said to try this:
-RUN pip install --upgrade jupyterlab jupyterlab_server jupyter_server traitlets nbformat
-# that did not fix it
-# still broken - can't save files
 
 
 # install other dependencies
